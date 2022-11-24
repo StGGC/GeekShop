@@ -59,7 +59,7 @@ class RegistrationScreen extends StatelessWidget {
                 icon: Icons.lock_outline,
                 controller: model.password),
             btn(
-              text: model.isLog ? 'log' : 'register',
+              text: model.isLog ? 'login' : 'register',
               fun: () => model.isLog
                   ? model.justLogIn(
                       emailAddress: model.emailAddress.text,
