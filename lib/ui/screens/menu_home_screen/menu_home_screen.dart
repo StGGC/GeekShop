@@ -4,7 +4,6 @@ import 'package:text/ui/screens/cart/cart_object_model.dart';
 import '../../../object/product_model.dart';
 import '../../theme/theme_app.dart';
 import '../../widgets/header_widget/header_widget.dart';
-import 'menu_home_model.dart';
 
 class MenuHomeScreen extends StatelessWidget {
   const MenuHomeScreen({Key? key}) : super(key: key);
@@ -52,7 +51,7 @@ class _CartItemWidget extends StatelessWidget {
 
     final product = context.watch<ProductModel>();
     return GestureDetector(
-      onTap: () => product.showDetail(context, product.items[index]),
+      onTap: () => product.showDetail(context, product.itemsFilter[index]),
       child: _CartItemContainerWidget(index: index),
     );
   }
@@ -123,7 +122,7 @@ class _CartItemContainerTextWidget extends StatelessWidget {
                   Radius.circular(ThemeApp.kRadius),
                 ),
                 image: DecorationImage(
-                  image: AssetImage(product.items[index].imgUrl),
+                  image: AssetImage(product.itemsFilter[index].imgUrl),
                   fit: BoxFit.contain,
                 ),
                 boxShadow: const [
@@ -148,7 +147,7 @@ class _CartItemContainerTextWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.items[index].name,
+                  product.itemsFilter[index].name,
                   style: const TextStyle(
                     color: ThemeApp.kAccent,
                     fontSize: 16,
