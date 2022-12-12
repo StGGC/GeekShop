@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text/ui/screens/registr/registr_screen_model.dart';
 
+import '../../navigations/main_navigation.dart';
+
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     const InputBorder styleField = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(12.0)),
       borderSide: BorderSide(style: BorderStyle.none),
     );
-    Widget myTextField(
-        {required String name, required IconData icon, required controller}) {
+    Widget myTextField({
+      required String name,
+      required IconData icon,
+      required controller,
+    }) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: TextFormField(
@@ -44,12 +48,6 @@ class RegistrationScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text("Registration page")),
             const SizedBox(height: 20),
-            !model.isLog
-                ? myTextField(
-                    name: 'name',
-                    icon: Icons.lock_outline,
-                    controller: model.name)
-                : const SizedBox.shrink(),
             myTextField(
                 name: 'Email',
                 icon: Icons.email_outlined,
@@ -59,23 +57,24 @@ class RegistrationScreen extends StatelessWidget {
                 icon: Icons.lock_outline,
                 controller: model.password),
             btn(
-              text: model.isLog ? 'login' : 'register',
-              fun: () => model.isLog
-                  ? model.justLogIn(
-                      emailAddress: model.emailAddress.text,
-                      password: model.password.text,
-                    )
-                  : model.justReg(
-                      emailAddress: model.emailAddress.text,
-                      password: model.password.text,
-                    ),
-            ),
+                text: model.isLog ? 'login' : 'register',
+                fun: () => (model.isLog)
+                    ? model.justLogIn(
+                        emailAddress: model.emailAddress.text,
+                        password: model.password.text,
+                        context: context)
+                    : {
+                        model.justReg(
+                          emailAddress: model.emailAddress.text,
+                          password: model.password.text,
+                        ),
+                      }),
             const SizedBox(height: 12),
             GestureDetector(
               onTap: () => model.setIsLog(),
               child: model.isLog
-                  ? const Text('не зарегестрированы ? ')
-                  : const Text('уже есть аакаунт ? '),
+                  ? const Text('уже есть акаунт ? Войдите в акк')
+                  : const Text('не зарегестрированы ? Сделайте это'),
             ),
           ],
         ),
@@ -86,6 +85,7 @@ class RegistrationScreen extends StatelessWidget {
 
 Widget btn({required text, required fun}) {
   return GestureDetector(
+    onTap: fun,
     child: Container(
       padding: const EdgeInsets.all(12.0),
       margin: const EdgeInsets.only(left: 40),
@@ -94,6 +94,5 @@ Widget btn({required text, required fun}) {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Center(child: Text(text)),
     ),
-    onTap: () => fun,
   );
 }

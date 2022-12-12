@@ -1,49 +1,53 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-
+import 'package:text/object/product_object.dart';
+import 'package:text/ui/navigations/main_navigation.dart';
 import 'cart_object.dart';
 
 class CartModel extends ChangeNotifier {
-  Map<String, Cart> _listCarts = {};
+  void showDetail(BuildContext context, Product item) {
+    Navigator.of(context)
+        .pushNamed(MainNavigationRouteName.details, arguments: item.key);
+  }
+
+  final Map<String, Cart> _listCarts = {};
   UnmodifiableMapView<String, Cart> get listCarts =>
       UnmodifiableMapView(_listCarts);
 
   double get pr => _pr;
   double get total => _total;
-  var _number;
+
   String get number => allNumber();
 
   allNumber() {
-    _number = 0;
+    var number = 0;
     _listCarts.forEach((key, value) {
-      _number += value.count;
+      number += value.count;
     });
-    return _number.toString();
+    return number.toString();
   }
 
-  void cartAdd({productId, price, name, imgUrl}) {
-    if (_listCarts.containsKey(productId)) {
+  void cartAdd({required Product product}) {
+    if (_listCarts.containsKey(product.id)) {
       _listCarts.update(
-        productId,
+        product.id,
         (value) => Cart(
           id: value.id,
           count: value.count + 1,
-          name: value.name,
-          imgUrl: value.imgUrl,
-          price: value.price,
+          product: value.product,
         ),
       );
     } else {
       _listCarts.putIfAbsent(
-          productId,
+          product.id,
           () => Cart(
-              id: '${DateTime.now()}',
-              count: 1,
-              name: name,
-              imgUrl: imgUrl,
-              price: price));
+                id: '${DateTime.now()}',
+                count: 1,
+                product: product,
+              ));
     }
+    print(product.name);
     allTotal();
     notifyListeners();
   }
@@ -57,29 +61,21 @@ class CartModel extends ChangeNotifier {
   void updateAddOne({productId}) {
     _listCarts.update(
         productId,
-        (value) => Cart(
-            id: value.id,
-            count: value.count + 1,
-            name: value.name,
-            imgUrl: value.imgUrl,
-            price: value.price));
+        (value) =>
+            Cart(id: value.id, count: value.count + 1, product: value.product));
     allTotal();
 
     notifyListeners();
   }
 
-  void updateDeleteOne({productId}) {
-    if ((_listCarts[productId]?.count ?? 0) < 2) {
-      deleteItem(productId: productId);
+  void updateDeleteOne({required cartKey}) {
+    if ((_listCarts[cartKey]?.count ?? 0) < 2) {
+      deleteItem(productId: cartKey);
     } else {
       _listCarts.update(
-          productId,
+          cartKey,
           (value) => Cart(
-              id: value.id,
-              count: value.count - 1,
-              name: value.name,
-              imgUrl: value.imgUrl,
-              price: value.price));
+              id: value.id, count: value.count - 1, product: value.product));
     }
     allTotal();
 
@@ -94,7 +90,7 @@ class CartModel extends ChangeNotifier {
     procent = 0;
     _total = 0;
     _listCarts.forEach((key, value) {
-      _pr += value.price * value.count;
+      _pr += value.product.price * value.count;
     });
     if (_pr > 20000) {
       procent = _pr / 100 * 10;

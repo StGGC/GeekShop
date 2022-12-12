@@ -169,12 +169,7 @@ class _CartItemContainerTextWidget extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        cart.cartAdd(
-                          productId: product.items[index].id,
-                          price: product.items[index].price,
-                          name: product.items[index].name,
-                          imgUrl: product.items[index].imgUrl,
-                        );
+                        cart.cartAdd(product: product.items[index]);
                       },
                       child: const Icon(
                         Icons.add_circle_outline,

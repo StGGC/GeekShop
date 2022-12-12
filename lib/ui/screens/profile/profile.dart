@@ -12,13 +12,22 @@ class ProfileScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            const Align(
-                alignment: Alignment.centerLeft, child: Text("My Profile")),
+            Text("My Profile"),
             const SizedBox(height: 10),
-            const Align(alignment: Alignment.centerLeft, child: Text("UID:")),
+            Row(
+              children: [
+                Text("name:${model.user?.displayName}"),
+                // GestureDetector(
+                //   onTap: () => model.updateName('Jake'),
+                //   child: const Text('upDataName'),
+                // )
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text("UID:${model.user?.uid}"),
             const SizedBox(height: 12),
             GestureDetector(
               child: Container(
@@ -30,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                 child: const Center(child: Text('Log Out')),
               ),
               onTap: () {
-                model.justlogOut();
+                model.justlogOut(context);
               },
             )
           ],
