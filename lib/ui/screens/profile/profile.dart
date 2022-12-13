@@ -20,10 +20,6 @@ class ProfileScreen extends StatelessWidget {
             Row(
               children: [
                 Text("name:${model.user?.displayName}"),
-                // GestureDetector(
-                //   onTap: () => model.updateName('Jake'),
-                //   child: const Text('upDataName'),
-                // )
               ],
             ),
             const SizedBox(height: 10),

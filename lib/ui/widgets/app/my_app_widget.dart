@@ -1,11 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:text/ui/navigations/main_navigation.dart';
-
-final FirebaseAuth _auth = FirebaseAuth.instance;
+import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 
 class MyAppWidget extends StatelessWidget {
   const MyAppWidget({Key? key}) : super(key: key);
+
+  String getRout() {
+    if (defaultTargetPlatform.name != 'windows') {
+      if (FirebaseAuth.instance.currentUser != null) {
+        return MainNavigationRouteName.main;
+      } else {
+        return MainNavigationRouteName.registrtation;
+      }
+    } else {
+      return MainNavigationRouteName.main;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final mainNavigation = MainNavigation();
@@ -13,9 +25,7 @@ class MyAppWidget extends StatelessWidget {
       title: 'flutter app',
       theme: ThemeData(),
       routes: mainNavigation.routes,
-      initialRoute: _auth.currentUser == null
-          ? MainNavigationRouteName.registrtation
-          : MainNavigationRouteName.main,
+      initialRoute: getRout(),
       onGenerateRoute: mainNavigation.onGenerateRoute,
       debugShowCheckedModeBanner: false,
     );

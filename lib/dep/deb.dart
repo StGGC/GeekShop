@@ -5,18 +5,19 @@ import 'package:text/firebase_options.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 
 class Dep {
-  Future<void> get init => _constructor();
+  Future<void> init() => _constructor();
   Future<void> _constructor() async {
-    try {
-      WidgetsFlutterBinding.ensureInitialized();
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-    } catch (e) {
-      defaultTargetPlatform.name == 'windows'
-          ? print('goood')
-          : print(defaultTargetPlatform.name);
+    if (defaultTargetPlatform.name != 'windows') {
+      try {
+        WidgetsFlutterBinding.ensureInitialized();
+        await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
+      } catch (e) {
+        print('not init firebase');
+      }
     }
+
     await Hive.initFlutter();
   }
 }

@@ -47,7 +47,6 @@ class CartModel extends ChangeNotifier {
                 product: product,
               ));
     }
-    print(product.name);
     allTotal();
     notifyListeners();
   }
