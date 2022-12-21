@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:text/ui/navigations/main_navigation.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
+import 'package:text/ui/theme/theme_app.dart';
 
 class MyAppWidget extends StatelessWidget {
   const MyAppWidget({Key? key}) : super(key: key);
@@ -23,7 +24,8 @@ class MyAppWidget extends StatelessWidget {
     final mainNavigation = MainNavigation();
     return MaterialApp(
       title: 'flutter app',
-      theme: ThemeData(),
+      theme: MyTheme.dark,
+      darkTheme: MyTheme.dark,
       routes: mainNavigation.routes,
       initialRoute: getRout(),
       onGenerateRoute: mainNavigation.onGenerateRoute,

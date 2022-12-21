@@ -11,7 +11,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(ThemeApp.kIndent),
+      padding: const EdgeInsets.all(ThemeSize.kIndent),
       child: Column(
         children: const [
           _CartBody(),
@@ -103,10 +103,10 @@ class _CartButtomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = context.watch<CartModel>();
     return Container(
-      decoration: const BoxDecoration(
-        color: ThemeApp.kFrontColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(ThemeApp.kRadius),
+      decoration: BoxDecoration(
+        color: Theme.of(context).splashColor,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(ThemeSize.kRadius),
         ),
       ),
       width: double.infinity,
@@ -115,7 +115,10 @@ class _CartButtomBar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('all total ${model.pr}'),
+            Text(
+              'all total ${model.pr}',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             model.pr > 20000
                 ? Text(
                     'save -${model.procent}',

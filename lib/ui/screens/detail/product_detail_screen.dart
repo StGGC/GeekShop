@@ -135,7 +135,7 @@ class _ProductDetailedContainerText extends StatelessWidget {
                 child:
                     Text(title, style: _style(size: 22, fW: FontWeight.w500))),
             Container(
-              decoration: _decoration(colors: ThemeApp.kAccent),
+              decoration: _decoration(colors: Theme.of(context).primaryColor),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
@@ -269,9 +269,9 @@ class _DishDetailedButtonBack extends StatelessWidget {
           left: 12.0 + 10,
           right: 12.0,
         ),
-        child: const Icon(
+        child: Icon(
           Icons.arrow_back_ios,
-          color: ThemeApp.kAccent,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );

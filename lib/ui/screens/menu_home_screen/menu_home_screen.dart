@@ -25,12 +25,12 @@ class _MenuBodyWidget extends StatelessWidget {
     final product = context.watch<ProductModel>().itemsFilter;
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(ThemeApp.kIndent),
+        padding: const EdgeInsets.all(ThemeSize.kIndent),
         child: GridView.builder(
           itemCount: product.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            mainAxisSpacing: ThemeApp.kIndent,
-            crossAxisSpacing: ThemeApp.kIndent,
+            mainAxisSpacing: ThemeSize.kIndent,
+            crossAxisSpacing: ThemeSize.kIndent,
             maxCrossAxisExtent: 335.0,
           ),
           itemBuilder: (context, index) => (product.isNotEmpty)
@@ -64,10 +64,10 @@ class _CartItemContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // final itemImgUrl = context.read<ProductModel>().items[index].imgUrl;
     return DecoratedBox(
-        decoration: const BoxDecoration(
-          color: ThemeApp.kFrontColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(ThemeApp.kRadius),
+        decoration: BoxDecoration(
+          color: Theme.of(context).splashColor,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(ThemeSize.kRadius),
           ),
         ),
         child: _CartItemContainerContentWidget(index: index));
@@ -119,7 +119,7 @@ class _CartItemContainerTextWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.all(
-                  Radius.circular(ThemeApp.kRadius),
+                  Radius.circular(ThemeSize.kRadius),
                 ),
                 image: DecorationImage(
                   image: AssetImage(product.itemsFilter[index].imgUrl),
@@ -136,20 +136,20 @@ class _CartItemContainerTextWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: ThemeApp.kIndent),
+          const SizedBox(height: ThemeSize.kIndent),
           Padding(
             padding: const EdgeInsets.only(
-              left: ThemeApp.kIndent,
-              right: ThemeApp.kIndent,
-              bottom: ThemeApp.kIndent,
+              left: ThemeSize.kIndent,
+              right: ThemeSize.kIndent,
+              bottom: ThemeSize.kIndent,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   product.itemsFilter[index].name,
-                  style: const TextStyle(
-                    color: ThemeApp.kAccent,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     letterSpacing: 1,
@@ -160,8 +160,8 @@ class _CartItemContainerTextWidget extends StatelessWidget {
                   children: [
                     Text(
                       '${product.items[index].price} Р.',
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
                         letterSpacing: 2,
@@ -171,10 +171,10 @@ class _CartItemContainerTextWidget extends StatelessWidget {
                       onTap: () {
                         cart.cartAdd(product: product.items[index]);
                       },
-                      child: const Icon(
+                      child: Icon(
                         Icons.add_circle_outline,
                         size: 20,
-                        color: ThemeApp.kAccent,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ],

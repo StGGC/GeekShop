@@ -18,7 +18,7 @@ class GuidingScreen extends StatelessWidget {
           (mediaQuery < 371) ? const _FooterFlotingButtom() : null,
       bottomNavigationBar:
           (mediaQuery >= 371) ? const _FooterBottomBarWidget() : null,
-      backgroundColor: ThemeApp.kBGColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     );
   }
 }
@@ -56,13 +56,13 @@ class _FooterBottomBarWidget extends StatelessWidget {
       itemCornerRadius: 20,
       selectedIndex: currentIndexTab,
       containerPadding: EdgeInsets.zero,
-      backgroundColor: ThemeApp.kBGColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       onItemSelected: model.setCurrentIndexTab,
       animationDuration: const Duration(milliseconds: 300),
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       items: <BottomNavBarItem>[
-        bubbItem('Home', Icons.home, currentIndexTab),
-        bubbItem('Favorite', Icons.favorite, currentIndexTab),
+        bubbItem('Home', Icons.home, currentIndexTab, context),
+        bubbItem('Favorite', Icons.favorite, currentIndexTab, context),
         BottomNavBarItem(
           title: 'Shop cart',
           icon: Row(
@@ -74,7 +74,7 @@ class _FooterBottomBarWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 5),
                       child: Text(
                         cartModel.number,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -82,11 +82,12 @@ class _FooterBottomBarWidget extends StatelessWidget {
                   : const SizedBox.shrink()
             ],
           ),
-          inactiveColor: ThemeApp.kFrontColor,
+          inactiveColor: Theme.of(context).splashColor,
           activeColor: Color(listIntActiveColor[currentIndexTab]),
-          activeBackgroundColor: ThemeApp.kFrontColor,
+          activeBackgroundColor: Theme.of(context).splashColor,
         ),
-        bubbItem('Profile', Icons.account_circle_rounded, currentIndexTab),
+        bubbItem(
+            'Profile', Icons.account_circle_rounded, currentIndexTab, context),
       ],
     );
   }
@@ -98,12 +99,12 @@ class _FooterFlotingButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 33,
-      backgroundColor: ThemeApp.kFrontColor,
+      backgroundColor: Theme.of(context).splashColor,
       child: Center(
         child: FloatingActionButton(
           elevation: 0,
           onPressed: () {},
-          backgroundColor: ThemeApp.kAccent,
+          backgroundColor: Theme.of(context).primaryColor,
           child: const Icon(Icons.menu_sharp),
         ),
       ),
@@ -112,12 +113,12 @@ class _FooterFlotingButtom extends StatelessWidget {
 }
 
 final listIntActiveColor = [0xffF10f2f10, 0xffFF3D00, 0xffF10f2f10, 0xffF7fff6];
-bubbItem(String text, IconData icon, int index) {
+bubbItem(String text, IconData icon, int index, context) {
   return BottomNavBarItem(
     title: text,
     icon: Icon(icon),
-    inactiveColor: ThemeApp.kFrontColor,
+    inactiveColor: Theme.of(context).splashColor,
     activeColor: Color(listIntActiveColor[index]),
-    activeBackgroundColor: ThemeApp.kFrontColor,
+    activeBackgroundColor: Theme.of(context).splashColor,
   );
 }

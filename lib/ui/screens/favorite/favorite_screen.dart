@@ -21,23 +21,30 @@ class FavoriteScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: CircleAvatar(radius: 15, child: Text('${index + 1}')),
+                child: CircleAvatar(
+                  radius: 15,
+                  child: Text('${index + 1}'),
+                  backgroundColor: Colors.transparent,
+                ),
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: ThemeApp.kAccent.withOpacity(0.5),
+                        color: Theme.of(context).primaryColor.withOpacity(0.5),
                         borderRadius: const BorderRadius.all(
-                            Radius.circular(ThemeApp.kRadius))),
+                            Radius.circular(ThemeSize.kRadius))),
                     child: ListTile(
                       onTap: () => product.showDetail(context, items[index]),
                       contentPadding: const EdgeInsets.symmetric(
                         vertical: 15,
                         horizontal: 10,
                       ),
-                      title: Text(items[index].name),
+                      title: Text(
+                        items[index].name,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                       trailing: InkWell(
                         onTap: () {
                           model.justdelfavorite(items[index]);
@@ -48,8 +55,8 @@ class FavoriteScreen extends StatelessWidget {
                         ),
                       ),
                       leading: ClipRRect(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(ThemeApp.kRadius)),
+                        borderRadius: const BorderRadius.all(
+                            Radius.circular(ThemeSize.kRadius)),
                         child: Image(
                           image: AssetImage(
                             items[index].imgUrl,
@@ -64,7 +71,7 @@ class FavoriteScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (BuildContext context, int index) =>
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
       ),
     );
   }

@@ -50,6 +50,7 @@ class _SearchWidget extends StatelessWidget {
       fillColor: Color.fromARGB(255, 235, 235, 235),
       prefixIcon: Icon(Icons.search, color: Colors.grey),
       hintText: 'Search',
+      hintStyle: TextStyle(color: Colors.black87),
       enabledBorder: styleSearch,
       focusedBorder: styleSearch,
     );
@@ -75,7 +76,7 @@ class _FilterButtonWidget extends StatelessWidget {
       shadowColor: Colors.transparent,
       foregroundColor: Colors.transparent,
       backgroundColor: Colors.transparent,
-      side: const BorderSide(width: 2, color: ThemeApp.kAccent),
+      side: BorderSide(width: 2, color: Theme.of(context).primaryColor),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.12)),
     );
     final currentIndexTab = context.select(
@@ -85,9 +86,9 @@ class _FilterButtonWidget extends StatelessWidget {
       return ElevatedButton(
         style: styleBut,
         onPressed: colBak,
-        child: const SizedBox(
+        child: SizedBox(
           height: 33.0,
-          child: Icon(Icons.tune, color: ThemeApp.kAccent),
+          child: Icon(Icons.tune, color: Theme.of(context).primaryColor),
         ),
       );
     }
