@@ -79,30 +79,14 @@ class _FilterButtonWidget extends StatelessWidget {
       side: BorderSide(width: 2, color: Theme.of(context).primaryColor),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.12)),
     );
-    final currentIndexTab = context.select(
-      (GuidingScreenModel e) => e.currentIndexTab,
+
+    return ElevatedButton(
+      style: styleBut,
+      onPressed: () {},
+      child: SizedBox(
+        height: 33.0,
+        child: Icon(Icons.tune, color: Theme.of(context).primaryColor),
+      ),
     );
-    button(Function() colBak) {
-      return ElevatedButton(
-        style: styleBut,
-        onPressed: colBak,
-        child: SizedBox(
-          height: 33.0,
-          child: Icon(Icons.tune, color: Theme.of(context).primaryColor),
-        ),
-      );
-    }
-
-    Widget getColBak(indexTab) {
-      switch (indexTab) {
-        case 0:
-          return button(() => print('1'));
-        case 1:
-          return button(() => print('2'));
-      }
-      return const Text('data');
-    }
-
-    return getColBak(currentIndexTab);
   }
 }

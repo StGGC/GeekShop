@@ -3,15 +3,27 @@ import 'package:provider/provider.dart';
 import 'package:text/ui/screens/profile/profile_model.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 
+import '../../theme/theme_app.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          actions: [
+            Consumer<MyThemeNotifier>(
+                builder: (context, themeModel, _) => IconButton(
+                    onPressed: () => themeModel.toggTheme(),
+                    icon: const Icon(Icons.toggle_off)))
+          ],
+        ),
         body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: _getPage(),
-    ));
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: _getPage(),
+        ));
   }
 
   Widget _getPage() {
@@ -56,7 +68,6 @@ class _DesktopBody extends StatelessWidget {
 
 class _MobileBody extends StatelessWidget {
   const _MobileBody();
-
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ProfileModel>();

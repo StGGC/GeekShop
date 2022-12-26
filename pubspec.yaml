@@ -17,6 +17,7 @@ dependencies:
   firebase_core_desktop: ^1.0.2
   firebase_core: ^2.1.1
   firebase_auth: ^4.1.2
+  shared_preferences: ^2.0.15
   # analizator
   #bubble_bottom_bar: ^2.0.0
   bottom_nav_bar: ^1.0.3
