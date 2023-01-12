@@ -15,9 +15,13 @@ class ProfileScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           actions: [
             Consumer<MyThemeNotifier>(
-                builder: (context, themeModel, _) => IconButton(
-                    onPressed: () => themeModel.toggTheme(),
-                    icon: const Icon(Icons.toggle_off)))
+              builder: (context, themeModel, _) => IconButton(
+                onPressed: () => themeModel.toggTheme(),
+                icon: themeModel.getTheme() == MyThemeNotifier.darkTheme
+                    ? const Icon(Icons.toggle_off)
+                    : const Icon(Icons.toggle_on),
+              ),
+            ),
           ],
         ),
         body: Padding(
