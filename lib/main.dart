@@ -5,7 +5,8 @@ import 'package:text/ui/theme/theme_app.dart';
 import 'package:text/ui/widgets/app/my_app_widget.dart';
 
 void main() async {
-  await Dep().init();
+  await Dep().initFirebase();
+  await Dep().initApi();
   runApp(ChangeNotifierProvider<MyThemeNotifier>(
     create: (_) => MyThemeNotifier(),
     child: const MyAppWidget(),

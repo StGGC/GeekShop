@@ -89,14 +89,20 @@ class _DishDetailedImg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ProductDetailModel>();
-    final imgUrl = model.product?.imgUrl ?? 'assets/imgs/Nintendo Gameqube.jpg';
+    final imgUrl = model.product?.imgUrl;
+    // print(imgUrl);
     return Align(
-      child: Image.asset(imgUrl,
-          height: 200,
-          width: MediaQuery.of(context).size.width * 0.6,
-          fit: BoxFit.contain,
-          alignment: Alignment.bottomLeft),
-    );
+        child: imgUrl != null
+            ? Image(
+                height: 200,
+                width: MediaQuery.of(context).size.width * 0.6,
+                fit: BoxFit.contain,
+                alignment: Alignment.bottomLeft,
+                image: NetworkImage(
+                  imgUrl,
+                ),
+              )
+            : const SizedBox.shrink());
   }
 }
 

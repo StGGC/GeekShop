@@ -3,7 +3,7 @@ import '../../../object/product_object.dart';
 class Cart {
   String id;
   int count;
-  Product product;
+  ProductData product;
 
   Cart({
     required this.id,

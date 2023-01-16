@@ -6,7 +6,7 @@ import 'package:text/ui/navigations/main_navigation.dart';
 import 'cart_object.dart';
 
 class CartModel extends ChangeNotifier {
-  void showDetail(BuildContext context, Product item) {
+  void showDetail(BuildContext context, ProductData item) {
     Navigator.of(context)
         .pushNamed(MainNavigationRouteName.details, arguments: item.key);
   }
@@ -28,10 +28,10 @@ class CartModel extends ChangeNotifier {
     return number.toString();
   }
 
-  void cartAdd({required Product product}) {
+  void cartAdd({required ProductData product}) {
     if (_listCarts.containsKey(product.id)) {
       _listCarts.update(
-        product.id,
+        product.id!,
         (value) => Cart(
           id: value.id,
           count: value.count + 1,
@@ -40,7 +40,7 @@ class CartModel extends ChangeNotifier {
       );
     } else {
       _listCarts.putIfAbsent(
-          product.id,
+          product.id!,
           () => Cart(
                 id: '${DateTime.now()}',
                 count: 1,
@@ -89,7 +89,7 @@ class CartModel extends ChangeNotifier {
     procent = 0;
     _total = 0;
     _listCarts.forEach((key, value) {
-      _pr += value.product.price * value.count;
+      _pr += value.product.price! * value.count;
     });
     if (_pr > 20000) {
       procent = _pr / 100 * 10;

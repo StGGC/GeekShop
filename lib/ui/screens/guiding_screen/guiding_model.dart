@@ -13,7 +13,7 @@ class GuidingScreenModel extends ChangeNotifier {
       notifyListeners();
       if (index == 1) {
         if (!Hive.isAdapterRegistered(0)) {
-          Hive.registerAdapter(ProductAdapter());
+          Hive.registerAdapter(ProductDataAdapter());
         }
       }
     }

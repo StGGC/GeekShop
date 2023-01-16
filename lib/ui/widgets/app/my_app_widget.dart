@@ -26,8 +26,7 @@ class MyAppWidget extends StatelessWidget {
     return Consumer<MyThemeNotifier>(
       builder: (context, themeModel, _) => MaterialApp(
         title: 'flutter app',
-        theme: themeModel.getTheme(),
-        // darkTheme: MyThemeNotifier.darkTheme,
+        theme: themeModel.getTheme,
         routes: mainNavigation.routes,
         initialRoute: getRout(),
         onGenerateRoute: mainNavigation.onGenerateRoute,

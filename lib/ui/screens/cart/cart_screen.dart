@@ -60,7 +60,7 @@ class _ItemCart extends StatelessWidget {
     }
 
     Widget _imgItemCart(String? img) {
-      return Image(image: AssetImage(img ?? 'assets/imgs/Prod1.png'));
+      return Image(image: NetworkImage(img as String));
     }
 
     final _ = model.listCarts.values.toList()[index].product;
@@ -69,7 +69,7 @@ class _ItemCart extends StatelessWidget {
       child: ListTile(
           minVerticalPadding: 2.5,
           leading: _imgItemCart(_.imgUrl),
-          title: Text(_.name),
+          title: Text(_.name as String),
           subtitle: Text('${_.price}'),
           trailing: _addAndSub(index)),
     );

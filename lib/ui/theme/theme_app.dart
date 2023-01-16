@@ -34,7 +34,7 @@ class MyThemeNotifier with ChangeNotifier {
   );
 
   ThemeData _themeData = lightTheme;
-  ThemeData getTheme() => _themeData;
+  ThemeData get getTheme => _themeData;
 
   MyThemeNotifier() {
     StorageManager.readData('themeMode').then((value) {

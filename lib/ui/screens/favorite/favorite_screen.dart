@@ -42,7 +42,7 @@ class FavoriteScreen extends StatelessWidget {
                         horizontal: 10,
                       ),
                       title: Text(
-                        items[index].name,
+                        items[index].name as String,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: InkWell(
@@ -58,8 +58,8 @@ class FavoriteScreen extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                             Radius.circular(ThemeSize.kRadius)),
                         child: Image(
-                          image: AssetImage(
-                            items[index].imgUrl,
+                          image: NetworkImage(
+                            items[index].imgUrl as String,
                           ),
                         ),
                       ),

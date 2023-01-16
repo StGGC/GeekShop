@@ -9,6 +9,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<MyThemeNotifier>();
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -17,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
             Consumer<MyThemeNotifier>(
               builder: (context, themeModel, _) => IconButton(
                 onPressed: () => themeModel.toggTheme(),
-                icon: themeModel.getTheme() == MyThemeNotifier.darkTheme
+                icon: themeModel.getTheme == MyThemeNotifier.darkTheme
                     ? const Icon(Icons.toggle_off)
                     : const Icon(Icons.toggle_on),
               ),

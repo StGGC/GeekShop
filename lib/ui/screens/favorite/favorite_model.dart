@@ -7,8 +7,8 @@ class FavoriteModel extends ChangeNotifier {
   FavoriteModel() {
     _op();
   }
-  final _itemsfavorite = <Product>[];
-  List<Product> get items => _itemsfavorite.toList();
+  final _itemsfavorite = <ProductData>[];
+  List<ProductData> get items => _itemsfavorite.toList();
 
   void _loadFavorit(box) {
     for (var element in box.values) {
@@ -23,9 +23,9 @@ class FavoriteModel extends ChangeNotifier {
 
   void _op() async {
     if (!Hive.isAdapterRegistered(0)) {
-      Hive.registerAdapter(ProductAdapter());
+      Hive.registerAdapter(ProductDataAdapter());
     }
-    final box = await Hive.openBox<Product>('products');
+    final box = await Hive.openBox<ProductData>('products');
     _loadFavorit(box);
     box.listenable().addListener(() {
       _loadFavorit(box);
@@ -34,9 +34,9 @@ class FavoriteModel extends ChangeNotifier {
 
   void justdelfavorite(item) async {
     if (!Hive.isAdapterRegistered(0)) {
-      Hive.registerAdapter(ProductAdapter());
+      Hive.registerAdapter(ProductDataAdapter());
     }
-    final box = await Hive.openBox<Product>('products');
+    final box = await Hive.openBox<ProductData>('products');
     for (var element in box.values) {
       if (element == item) {
         item?.isFavorite = false;
