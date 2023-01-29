@@ -31,10 +31,11 @@ class Dep {
     var urlPrefix = 'https://prt2b-6f7d3-default-rtdb.firebaseio.com';
     final url = Uri.parse('$urlPrefix/products.json');
     Response response = await get(url);
-    var products = Products.fromJson(jsonDecode(response.body));
-
-    for (var element in products.product!) {
-      await initProduct(element);
+    if (response.statusCode == 200) {
+      var products = Products.fromJson(jsonDecode(response.body));
+      for (var element in products.product!) {
+        await initProduct(element);
+      }
     }
   }
 
@@ -52,9 +53,5 @@ class Dep {
     }
     final box = await Hive.openBox<ProductData>('products');
     box.add(item);
-    // box.isNotEmpty{
-
-    // }
-    print(item);
   }
 }

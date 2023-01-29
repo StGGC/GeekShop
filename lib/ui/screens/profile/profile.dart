@@ -80,15 +80,15 @@ class _MobileBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 10),
-        Text("My Profile"),
+        Text("Мой профиль"),
         const SizedBox(height: 10),
         Row(
           children: [
-            Text("name:${model.user?.displayName}"),
+            Text("имя:${model.user?.displayName}"),
           ],
         ),
         const SizedBox(height: 10),
-        Text("UID:${model.user?.uid}"),
+        Text("uid:${model.user?.uid}"),
         const SizedBox(height: 12),
         GestureDetector(
           child: Container(
@@ -97,7 +97,7 @@ class _MobileBody extends StatelessWidget {
             decoration: const BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.all(Radius.circular(10))),
-            child: const Center(child: Text('Log Out')),
+            child: const Center(child: Text('Выход')),
           ),
           onTap: () {
             model.justlogOut(context);

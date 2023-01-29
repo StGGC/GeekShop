@@ -82,18 +82,20 @@ class _CartBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = context.watch<CartModel>();
     return Expanded(
-      child: ListView.builder(
-        itemCount: model.listCarts.values.toList().length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => model.showDetail(
-                context, model.listCarts.values.toList()[index].product),
-            child: _ItemCart(index: index),
-          );
-        },
+        child: ListView.separated(
+      itemCount: model.listCarts.values.toList().length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () => model.showDetail(
+              context, model.listCarts.values.toList()[index].product),
+          child: _ItemCart(index: index),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(
+        height: 10,
       ),
-    );
+    ));
   }
 }
 
@@ -116,16 +118,16 @@ class _CartButtomBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'all total ${model.pr}',
+              'Общая цена ${model.pr}',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             model.pr > 20000
                 ? Text(
-                    'save -${model.procent}',
+                    'Скидка -${model.procent}',
                     style: const TextStyle(color: Colors.green),
                   )
                 : const SizedBox.shrink(),
-            Text('total ${model.total}'),
+            Text('Цена со скидкой ${model.total}'),
             GestureDetector(
               child: Container(
                 padding: const EdgeInsets.all(7.0),
@@ -133,7 +135,7 @@ class _CartButtomBar extends StatelessWidget {
                 decoration: const BoxDecoration(
                     color: Colors.teal,
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: const Center(child: Text('Pay')),
+                child: const Center(child: Text('Оплата')),
               ),
               onTap: () {},
             ),

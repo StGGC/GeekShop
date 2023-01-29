@@ -49,7 +49,7 @@ class _SearchWidget extends StatelessWidget {
       filled: true,
       fillColor: Color.fromARGB(255, 235, 235, 235),
       prefixIcon: Icon(Icons.search, color: Colors.grey),
-      hintText: 'Search',
+      hintText: 'Поиск',
       hintStyle: TextStyle(color: Colors.black87),
       enabledBorder: styleSearch,
       focusedBorder: styleSearch,
