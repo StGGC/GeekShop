@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../screens_factory/widget_factory.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 
 abstract class MainNavigationRouteName {
   static const main = '/';
@@ -29,6 +31,17 @@ class MainNavigation {
         load: (_) => _widgetFactory.makeLoad(),
         profile: (_) => _widgetFactory.makeProfile(),
       };
+  String get getRout {
+    if (defaultTargetPlatform.name != 'windows') {
+      if (FirebaseAuth.instance.currentUser != null) {
+        return MainNavigationRouteName.main;
+      } else {
+        return MainNavigationRouteName.registrtation;
+      }
+    }
+    return MainNavigationRouteName.main;
+  }
+
   Route? onGenerateRoute(RouteSettings settings) {
     return MaterialPageRoute(
       builder: (context) => Scaffold(

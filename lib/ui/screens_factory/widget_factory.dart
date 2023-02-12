@@ -14,6 +14,8 @@ import '../screens/menu_home_screen/menu_home_model.dart';
 import '../screens/menu_home_screen/menu_home_screen.dart';
 import '../screens/registr/registr_screen.dart';
 import '../screens/registr/registr_screen_model.dart';
+import '../theme/theme_app.dart';
+import '../widgets/app/my_app_widget.dart';
 import '../widgets/app/splashload.dart';
 
 class ScreensFactory {
@@ -27,6 +29,10 @@ class ScreensFactory {
       );
 
   /////// основные страницы  ///////
+  Widget initScreen() => ChangeNotifierProvider(
+        create: (_) => MyThemeNotifier(),
+        child: const MyAppWidget(),
+      );
   Widget makeMenuHome() => ChangeNotifierProvider(
         create: (_) => MenuHomeModel(),
         child: const MenuHomeScreen(),

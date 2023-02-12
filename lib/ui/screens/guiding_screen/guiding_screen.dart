@@ -2,8 +2,6 @@ import 'package:bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text/ui/screens/cart/cart_object_model.dart';
-import 'package:text/ui/theme/theme_app.dart';
-import '../profile/profile.dart';
 import '../../screens_factory/widget_factory.dart';
 import 'guiding_model.dart';
 
@@ -135,17 +133,18 @@ class _MenuButton extends StatelessWidget {
     return InkWell(
       onTap: () => model.setCurrentIndexTab(index),
       child: Container(
-        margin: EdgeInsets.only(bottom: 12),
+        margin: const EdgeInsets.only(bottom: 12),
         height: size,
         width: size,
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.all(
             Radius.circular(size / 2),
           ),
         ),
         child: Icon(
           menuIcon[index],
+          color: Color(listIntActiveColor[index]),
         ),
       ),
     );

@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:text/dep/deb.dart';
 import 'package:text/ui/screens/cart/cart_object_model.dart';
 import '../../../object/product_model.dart';
 import '../../theme/theme_app.dart';
-import '../../widgets/header_widget/header_widget.dart';
+import 'header_widget.dart';
 
 class MenuHomeScreen extends StatelessWidget {
   const MenuHomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size.width;
-    final model = context.watch<ProductModel>();
-
     return Column(
       children: mediaQuery < 370
           ? [const _MenuBodyWidget()]

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:text/object/product_object.dart';
-
-import '../dep/deb.dart';
 import '../ui/navigations/main_navigation.dart';
+
+enum FilterValue { descendingOrder, ascending }
 
 class ProductModel extends ChangeNotifier {
   void showDetail(BuildContext context, ProductData item) {
@@ -51,6 +52,44 @@ class ProductModel extends ChangeNotifier {
             return element.name!.toLowerCase().contains(text.toLowerCase());
           }).toList()
         : _items;
+    notifyListeners();
+  }
+
+// filter
+  FilterValue? filterValue = FilterValue.descendingOrder;
+
+  togFilterValue(FilterValue? value) {
+    filterValue = value;
+    switch (filterValue) {
+      case FilterValue.ascending:
+        _itemsFilter.sort((a, b) => a.name!.compareTo(b.name!));
+        break;
+      case FilterValue.descendingOrder:
+        _itemsFilter.sort((a, b) => b.name!.compareTo(a.name!));
+        break;
+      default:
+    }
+    notifyListeners();
+  }
+
+  RangeValues currentRangeValues = const RangeValues(0, 14000);
+  priceRange(RangeValues values) {
+    currentRangeValues = values;
+    _itemsFilter = [];
+    for (var element in _items) {
+      if (element.price! >= values.start && element.price! <= values.end) {
+        _itemsFilter.add(element);
+      } else {
+        _itemsFilter.remove(element);
+      }
+
+      notifyListeners();
+    }
+  }
+
+  var isOpenFilterBox = false;
+  togIsOpenFilterBox() {
+    isOpenFilterBox = !isOpenFilterBox;
     notifyListeners();
   }
 }
