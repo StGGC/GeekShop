@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text/ui/screens/cart/cart_object_model.dart';
 
-import '../../../object/product_model.dart';
-import '../../../object/product_object.dart';
 import '../../theme/theme_app.dart';
 
 class CartScreen extends StatelessWidget {
@@ -30,7 +28,7 @@ class _ItemCart extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = context.watch<CartModel>();
 
-    Widget _addAndSub(int index) {
+    Widget addAndSub(int index) {
       return FittedBox(
         child: Column(
           children: [
@@ -59,7 +57,7 @@ class _ItemCart extends StatelessWidget {
       );
     }
 
-    Widget _imgItemCart(String? img) {
+    Widget imgItemCart(String? img) {
       return Image(image: NetworkImage(img as String));
     }
 
@@ -68,10 +66,10 @@ class _ItemCart extends StatelessWidget {
       color: Colors.teal,
       child: ListTile(
           minVerticalPadding: 2.5,
-          leading: _imgItemCart(_.imgUrl),
+          leading: imgItemCart(_.imgUrl),
           title: Text(_.name as String),
           subtitle: Text('${_.price}'),
-          trailing: _addAndSub(index)),
+          trailing: addAndSub(index)),
     );
   }
 }
@@ -124,10 +122,13 @@ class _CartButtomBar extends StatelessWidget {
             model.pr > 20000
                 ? Text(
                     'Скидка -${model.procent}',
-                    style: const TextStyle(color: Colors.green),
+                    style: const TextStyle(color: Colors.greenAccent),
                   )
                 : const SizedBox.shrink(),
             Text('Цена со скидкой ${model.total}'),
+            const SizedBox(
+              height: 10,
+            ),
             GestureDetector(
               child: Container(
                 padding: const EdgeInsets.all(7.0),

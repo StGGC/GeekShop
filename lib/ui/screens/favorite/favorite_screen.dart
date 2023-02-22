@@ -71,7 +71,7 @@ class FavoriteScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (BuildContext context, int index) =>
-            const SizedBox(height: 10),
+            const SizedBox(height: 4),
       ),
     );
   }

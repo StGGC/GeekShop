@@ -35,13 +35,13 @@ class ProductData extends HiveObject {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['description'] = this.description;
-    data['id'] = this.id;
-    data['imgUrl'] = this.imgUrl;
-    data['isFavorite'] = this.isFavorite;
-    data['name'] = this.name;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['description'] = description;
+    data['id'] = id;
+    data['imgUrl'] = imgUrl;
+    data['isFavorite'] = isFavorite;
+    data['name'] = name;
+    data['price'] = price;
     return data;
   }
 }
@@ -59,9 +59,9 @@ class Products {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.product != null) {
-      data['product'] = this.product!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (product != null) {
+      data['product'] = product!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -19,6 +19,7 @@ const String keyThemeStory = 'themeMode';
 
 class MyThemeNotifier with ChangeNotifier {
   static final lightTheme = ThemeData.dark().copyWith(
+    hintColor: ThemeColors.kTextColorDark,
     textTheme: textThemeLight,
     primaryTextTheme: textThemeLight,
     scaffoldBackgroundColor: ThemeColors.kBGColor,
@@ -26,6 +27,7 @@ class MyThemeNotifier with ChangeNotifier {
     splashColor: ThemeColors.kFrontColor,
   );
   static final darkTheme = ThemeData.dark().copyWith(
+    hintColor: ThemeColors.kBGColor,
     textTheme: textThemeDark,
     primaryTextTheme: textThemeDark,
     scaffoldBackgroundColor: Colors.grey[600],

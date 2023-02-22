@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text/ui/screens/registr/registr_screen_model.dart';
 
-import '../../navigations/main_navigation.dart';
-
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
   @override
@@ -37,6 +35,26 @@ class RegistrationScreen extends StatelessWidget {
     }
 
     final model = context.watch<RegistrModel>();
+    Widget btn() {
+      return GestureDetector(
+        onTap: () async =>
+            await (model.isLog ? model.justLogIn() : model.justReg()).then(
+          (value) => model.setPage(context: context),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(12.0),
+          margin: const EdgeInsets.only(left: 40),
+          decoration: const BoxDecoration(
+              color: Colors.teal,
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: Center(
+              child: Text(
+            model.isLog ? 'login' : 'register',
+          )),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -56,19 +74,7 @@ class RegistrationScreen extends StatelessWidget {
                 name: 'Password',
                 icon: Icons.lock_outline,
                 controller: model.password),
-            btn(
-                text: model.isLog ? 'login' : 'register',
-                fun: () => (model.isLog)
-                    ? model.justLogIn(
-                        emailAddress: model.emailAddress.text,
-                        password: model.password.text,
-                        context: context)
-                    : {
-                        model.justReg(
-                          emailAddress: model.emailAddress.text,
-                          password: model.password.text,
-                        ),
-                      }),
+            btn(),
             const SizedBox(height: 12),
             GestureDetector(
               onTap: () => model.setIsLog(),
@@ -81,18 +87,4 @@ class RegistrationScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget btn({required text, required fun}) {
-  return GestureDetector(
-    onTap: fun,
-    child: Container(
-      padding: const EdgeInsets.all(12.0),
-      margin: const EdgeInsets.only(left: 40),
-      decoration: const BoxDecoration(
-          color: Colors.teal,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Center(child: Text(text)),
-    ),
-  );
 }
