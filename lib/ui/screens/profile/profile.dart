@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text/ui/screens/profile/profile_model.dart';
 import '../../theme/theme_app.dart';
-import '../../widgets/text_field/text_field.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ProfileModel>();
+    // final userData = context.watch<UserData>();
     return ListView(
       children: [
         const _ProfileHeader(),
-        _ProfileImg(imgURL: model.user?.photoURL),
+        _ProfileImg(imgURL: model.imgUrl),
         const _TextFields(),
-        const _Logout(),
       ],
     );
   }
@@ -41,7 +40,7 @@ class _ProfileHeader extends StatelessWidget {
 }
 
 class _ProfileImg extends StatelessWidget {
-  final String? imgURL;
+  final String imgURL;
   const _ProfileImg({required this.imgURL});
 
   @override
@@ -57,22 +56,24 @@ class _ProfileImg extends StatelessWidget {
             height: hImgBG,
             child: Image(
               fit: BoxFit.cover,
-              image: AssetImage('assets/imgs/Nintendo Gameqube.jpg'),
+              image: AssetImage('assets/imgs/AvBackImg.jpg'),
             ),
           ),
           Align(
-            alignment: Alignment.bottomCenter,
-            child: CircleAvatar(
-              backgroundColor: Colors.teal,
-              radius: hImgAvatar,
-              child: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  radius: 65,
-                  child: imgURL == null
-                      ? const Icon(Icons.person, size: hImgAvatar)
-                      : Image(image: NetworkImage(imgURL!))),
-            ),
-          )
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: hImgAvatar + hImgAvatar,
+                width: hImgAvatar + hImgAvatar,
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular((hImgAvatar + hImgAvatar) / 2),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        imgURL,
+                      )),
+                ),
+              ))
         ],
       ),
     );
@@ -101,9 +102,11 @@ class _TextFields extends StatelessWidget {
             contentPadding: const EdgeInsets.all(15.0),
             isCollapsed: true,
             filled: true,
-            fillColor: const Color.fromARGB(255, 201, 192, 192),
-            icon: Icon(icon, color: const Color.fromARGB(255, 179, 169, 169)),
+            fillColor: const Color.fromARGB(255, 164, 152, 152),
+            prefixIcon: Icon(icon, size: 18),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: name,
+            hintStyle: const TextStyle(fontSize: 16),
             enabledBorder: styleField,
             focusedBorder: styleField,
           ),
@@ -117,10 +120,24 @@ class _TextFields extends StatelessWidget {
       child: Column(
         children: [
           myTextField(
-              name: 'name',
-              icon: Icons.abc_outlined,
+              name: 'Имя',
+              icon: Icons.person,
               controller: controller.nameController),
+          myTextField(
+              name: 'Адрес',
+              icon: Icons.location_city,
+              controller: controller.adresController),
+          myTextField(
+              name: 'Иконка профиля',
+              icon: Icons.label_important,
+              controller: controller.imgUrlController),
+          myTextField(
+              name: 'Телефон',
+              icon: Icons.phone,
+              controller: controller.phoneController),
           _UpdateProfileInfo(),
+          SizedBox(height: 15.0),
+          _Logout(),
         ],
       ),
     );

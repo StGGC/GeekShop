@@ -51,6 +51,8 @@ flutter:
     - assets/imgs/Sega Dreamcast(Jap).jpg
     - assets/imgs/Sega Dreamcast(Eu).jpg
     - assets/imgs/AppLogo.png
+    - assets/imgs/AvBackImg.jpg
+    - assets/imgs/backImg.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
