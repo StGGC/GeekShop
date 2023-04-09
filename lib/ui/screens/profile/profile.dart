@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text/ui/screens/profile/profile_model.dart';
+import 'package:text/ui/screens/profile/user_model.dart';
 import '../../theme/theme_app.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ProfileModel>();
-    // final userData = context.watch<UserData>();
+    //  UserData user;
     return ListView(
       children: [
         const _ProfileHeader(),

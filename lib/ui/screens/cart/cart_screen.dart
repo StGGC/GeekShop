@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text/ui/screens/cart/cart_object_model.dart';
@@ -138,7 +139,29 @@ class _CartButtomBar extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: const Center(child: Text('Оплата')),
               ),
-              onTap: () {},
+              onTap: () => showCupertinoModalPopup<void>(
+                context: context,
+                builder: (BuildContext context) => CupertinoAlertDialog(
+                  title: const Text('Оплата успешно проведена'),
+                  content: const Text('Нажмите "Да" для продолжения'),
+                  actions: <CupertinoDialogAction>[
+                    CupertinoDialogAction(
+                      isDefaultAction: true,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Нет'),
+                    ),
+                    CupertinoDialogAction(
+                      isDestructiveAction: true,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Да'),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

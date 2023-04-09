@@ -9,10 +9,10 @@ class ProfileModel extends ChangeNotifier {
   final adresController = TextEditingController();
   final phoneController = TextEditingController();
   final imgUrlController = TextEditingController();
-  var imgUrl;
-  var adres;
-  var name;
-  var phone;
+  late String imgUrl;
+  late String adres;
+  late String name;
+  late String phone;
   late User? user;
   ProfileModel() {
     user = defaultTargetPlatform.name != 'windows'
