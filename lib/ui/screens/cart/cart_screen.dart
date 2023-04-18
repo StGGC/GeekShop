@@ -153,9 +153,11 @@ class _CartButtomBar extends StatelessWidget {
                       child: const Text('Нет'),
                     ),
                     CupertinoDialogAction(
+                      textStyle: const TextStyle(color: ThemeColors.kAccent),
                       isDestructiveAction: true,
                       onPressed: () {
                         Navigator.pop(context);
+                        model.cartCheck();
                       },
                       child: const Text('Да'),
                     ),

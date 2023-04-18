@@ -1,8 +1,8 @@
 class UserData {
-  String adres;
-  String imgUrl;
-  String name;
-  String phone;
+  String? adres;
+  String? imgUrl;
+  String? name;
+  String? phone;
 
   UserData({
     required this.adres,

@@ -10,11 +10,15 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ProfileModel>();
-    //  UserData user;
+
     return ListView(
       children: [
         const _ProfileHeader(),
-        _ProfileImg(imgURL: model.imgUrl),
+        _ProfileImg(
+            imgURL: model.myuser?.imgUrl != '' && model.myuser?.imgUrl != null
+                ? "${model.myuser?.imgUrl}"
+                : 'https://image.jimcdn.com/app/cms/image/transf/none/path/s3974dcc17bc4f3da/image/i7aa4144b4a73597c/version/1630076935/image.jpg'),
+        Text('${model.myuser?.name}'),
         const _TextFields(),
       ],
     );
@@ -61,20 +65,19 @@ class _ProfileImg extends StatelessWidget {
             ),
           ),
           Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: hImgAvatar + hImgAvatar,
-                width: hImgAvatar + hImgAvatar,
-                decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular((hImgAvatar + hImgAvatar) / 2),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        imgURL,
-                      )),
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: hImgAvatar + hImgAvatar,
+              width: hImgAvatar + hImgAvatar,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(imgURL),
                 ),
-              ))
+              ),
+            ),
+          )
         ],
       ),
     );

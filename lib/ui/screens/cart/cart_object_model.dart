@@ -1,8 +1,11 @@
 import 'dart:collection';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:text/object/product_object.dart';
 import 'package:text/ui/navigations/main_navigation.dart';
+import 'package:text/ui/screens/profile/profile_model.dart';
 import 'cart_object.dart';
 
 class CartModel extends ChangeNotifier {
@@ -97,5 +100,12 @@ class CartModel extends ChangeNotifier {
       procent = 0;
     }
     _total = _pr - procent;
+  }
+
+  cartCheck() async {
+    await FirebaseFirestore.instance
+        .collection("Check")
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .set({'Name': 'Name', 'Adres': 'Adres', 'Total count': _total});
   }
 }

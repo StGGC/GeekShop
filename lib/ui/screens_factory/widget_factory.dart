@@ -43,7 +43,7 @@ class ScreensFactory {
   Widget makeLoad() => const CircularLoad();
   Widget makeProfile() => ChangeNotifierProvider(
         create: (_) => ProfileModel(),
-        child: const ProfileScreen(),
+        child: ProfileScreen(),
       );
   Widget makeRegistration() => ChangeNotifierProvider(
         create: (_) => RegistrModel(),
