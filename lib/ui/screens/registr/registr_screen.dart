@@ -79,8 +79,8 @@ class RegistrationScreen extends StatelessWidget {
             GestureDetector(
               onTap: () => model.setIsLog(),
               child: model.isLog
-                  ? const Text('уже есть акаунт ? Войдите в акк')
-                  : const Text('не зарегестрированы ? Сделайте это'),
+                  ? const Text('не зарегестрированы ? Сделайте это')
+                  : const Text('уже есть акаунт ? Войдите в акк'),
             ),
           ],
         ),

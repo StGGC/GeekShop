@@ -106,6 +106,6 @@ class CartModel extends ChangeNotifier {
     await FirebaseFirestore.instance
         .collection("Check")
         .doc(FirebaseAuth.instance.currentUser?.uid)
-        .set({'Name': 'Name', 'Adres': 'Adres', 'Total count': _total});
+        .set({'Total count': _total});
   }
 }
