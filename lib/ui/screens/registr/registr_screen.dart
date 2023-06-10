@@ -49,7 +49,7 @@ class RegistrationScreen extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Center(
               child: Text(
-            model.isLog ? 'login' : 'register',
+            model.isLog ? 'Войти' : 'Зарегистрироваться',
           )),
         ),
       );
@@ -64,14 +64,14 @@ class RegistrationScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Registration page")),
+                child: Text("Страница регистрации")),
             const SizedBox(height: 20),
             myTextField(
-                name: 'Email',
+                name: 'Почта',
                 icon: Icons.email_outlined,
                 controller: model.emailAddress),
             myTextField(
-                name: 'Password',
+                name: 'Пароль',
                 icon: Icons.lock_outline,
                 controller: model.password),
             btn(),
