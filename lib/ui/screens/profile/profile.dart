@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
             imgURL: model.myuser?.imgUrl != '' && model.myuser?.imgUrl != null
                 ? "${model.myuser?.imgUrl}"
                 : 'https://image.jimcdn.com/app/cms/image/transf/none/path/s3974dcc17bc4f3da/image/i7aa4144b4a73597c/version/1630076935/image.jpg'),
-        Text('${model.myuser?.name}'),
+        NameWidget(),
         const _TextFields(),
       ],
     );
@@ -166,6 +166,23 @@ class _Logout extends StatelessWidget {
       ),
       onTap: () => model.justLogOut(context),
     );
+  }
+}
+
+class NameWidget extends StatelessWidget {
+  const NameWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final model = context.watch<ProfileModel>();
+    return Container(
+        padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+        child: Text('${model.myuser?.name}',
+            textDirection: TextDirection.ltr, // текст слева направо
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 24,
+            )));
   }
 }
 

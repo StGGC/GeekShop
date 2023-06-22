@@ -79,7 +79,12 @@ class _FooterFlotingButtom extends StatelessWidget {
   }
 }
 
-final listIntActiveColor = [0xffF10f2f10, 0xffFF3D00, 0xffF10f2f10, 0xffF7fff6];
+final listIntActiveColor = [
+  0xffF10f2f10,
+  0xffFF3D00,
+  0xffF10f2f10,
+  0xffF10f2f10
+];
 
 bubbItem(int index, context, CartModel cartModel) {
   return BottomNavBarItem(
